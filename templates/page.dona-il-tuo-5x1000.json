@@ -1,0 +1,132 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "pf-a7d2d656": {
+      "type": "pf-a7d2d656",
+      "disabled": true,
+      "settings": {}
+    },
+    "1714830655c3de9790": {
+      "type": "apps",
+      "blocks": {
+        "essential_shipping_bar_app_block_KexWxN": {
+          "type": "shopify://apps/essential-shipping-bar/blocks/app-block/4125375e-37c8-4137-949d-c4e1a3aac572",
+          "settings": {
+            "id": ""
+          }
+        }
+      },
+      "block_order": [
+        "essential_shipping_bar_app_block_KexWxN"
+      ],
+      "settings": {}
+    },
+    "rich_text_8K9htN": {
+      "type": "rich-text",
+      "settings": {
+        "full_width": false,
+        "section_title": "Scegli Sapori di libertà",
+        "text": "<h6><em>Il gusto della solidarietà</em></h6><h6>Donare il 5x1000 ad una realtà come la nostra è un gesto di grande valore che può fare la differenza per la vita di molte persone.</h6><h6><strong>Come?</strong> Scopri di più leggendo questa pagina!</h6>",
+        "text_size": "medium"
+      }
+    },
+    "feature_row_TWMfeA": {
+      "type": "feature-row",
+      "settings": {
+        "size": "small",
+        "background_color": "#f3f4f3",
+        "image": "shopify://shop_images/Partecipa_al_nostro_incontro_introduttivo_su_granbelsito.it-3.png",
+        "image_crop": "square",
+        "alignment": "center center",
+        "title": "",
+        "text": "<p>Perché è importante farlo?</p><ul><li>per promuovere prodotti di qualità: produciamo cibi realizzati nel rispetto dell'ambiente e delle persone;</li><li>per favorire l'inclusione sociale: sosteniamo progetti di educazione e formazione che combattono l'esclusione sociale e promuovono l'integrazione;</li><li>per concretizzare la solidarietà: facciamo la differenza nella vita di chi ha bisogno, offrendo un aiuto concreto e duraturo;</li><li>per costruire un futuro migliore: investiamo in un futuro più giusto e sostenibile, dove tutti hanno la possibilità di realizzare il proprio potenziale.</li></ul>",
+        "use_second_button": false,
+        "button_label": "",
+        "button_link": "",
+        "desktop_layout": "right",
+        "mobile_layout": "top"
+      }
+    },
+    "hero_TQkXkG": {
+      "type": "hero",
+      "settings": {
+        "hero_size": "small",
+        "alignment": "center center",
+        "title": "",
+        "text": "<p>Inserisci il <strong>C.F. 02676630201</strong> nella tua dichiarazione dei redditi.</p><p>Con il 5x1000 a Sapori di libertà non solo fai del bene, ma sostieni anche un'impresa che produce prodotti di qualità.</p>",
+        "text_size": "large",
+        "use_second_button": false,
+        "button_label": "",
+        "button_link": "https://teams.microsoft.com/l/meetup-join/19%3ameeting_MWM0NTNhOGYtYmM0MC00MDcxLTg1YzQtNjFlN2U3OWFlMGRl%40thread.v2/0?context=%7b%22Tid%22%3a%22f4350801-099d-4ebe-8c1e-851075712279%22%2c%22Oid%22%3a%22fde447f9-6c22-48f5-abf9-f0a9e8d3a0b3%22%7d",
+        "show_overlay": false,
+        "overlay_color": "#242424",
+        "overlay_text": "#ffffff",
+        "overlay_opacity": "0.5"
+      }
+    },
+    "gallery_wKynzd": {
+      "type": "gallery",
+      "blocks": {
+        "image_7rNQM7": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4264.jpg",
+            "alignment": "bottom center",
+            "icon": "none",
+            "cta_label": "",
+            "link": ""
+          }
+        },
+        "image_7WT4FE": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/IMG_4287_09a9a117-7bb0-40d3-aa1a-81ca5d55e632.jpg",
+            "alignment": "center right",
+            "icon": "none",
+            "cta_label": "",
+            "link": ""
+          }
+        },
+        "image_CGB6qT": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/kate-remmer-RZn4_FzNUCY-unsplash.jpg",
+            "alignment": "center center",
+            "icon": "none",
+            "cta_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_7rNQM7",
+        "image_7WT4FE",
+        "image_CGB6qT"
+      ],
+      "settings": {
+        "section_height": "medium",
+        "show_overlay": true,
+        "overlay_color": "#000000",
+        "overlay_text": "#ffffff",
+        "overlay_opacity": "0.3"
+      }
+    }
+  },
+  "order": [
+    "pf-a7d2d656",
+    "1714830655c3de9790",
+    "rich_text_8K9htN",
+    "feature_row_TWMfeA",
+    "hero_TQkXkG",
+    "gallery_wKynzd"
+  ],
+  "layout": "theme.pagefly"
+}

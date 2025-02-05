@@ -1,0 +1,19 @@
+{% comment %}
+  The contents of the product.liquid template can be found in /sections/product-template/
+{% endcomment %}
+
+{% section 'product-template' %}
+{% section 'product-recommendations' %}
+
+<script>
+  window.theme = window.theme || {};
+  window.theme.strings = window.theme.strings || {};
+
+  // Override default values of theme.strings for each template.
+  // Values are used by JavaScript only; Liquid must be updated separately
+  window.theme.strings.addToCart = {{ 'products.product.add_to_cart' | t | json }};
+  window.theme.strings.soldOut = {{ 'products.product.sold_out' | t | json }};
+  window.theme.strings.unavailable = {{ 'products.product.unavailable' | t | json }};
+</script>
+
+<!--Start Stamped.io Auto Installation--><div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}" data-widget-language="{{shop.locale}}">{{ product.metafields.stamped.reviews }}</div><!--End Stamped.io Auto Installation--><div class="yotpo-widget-instance" data-yotpo-instance-id="844598" data-yotpo-product-id="{{ product.id }}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&amp;','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div>
