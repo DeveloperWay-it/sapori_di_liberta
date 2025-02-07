@@ -1,0 +1,17 @@
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{% comment %}
+  Accordion Snippet con Icona
+  Parametri:
+    - title: Titolo dell'accordion
+    - content: Contenuto HTML da visualizzare al click
+    - icon: Nome dell'icona (es. 'arrow_down'); se è 'none', non viene mostrata l'icona.
+  Esempio di utilizzo:
+    {% include 'accordion', title: 'Dettagli prodotto', content: '<p>Info prodotto</p>', icon: 'arrow_down' %}
+{% endcomment %}
+
+<button class="accordion">
+  <strong data-mce-fragment="1">{{ title }}</strong>
+</button>
+<div class="panel ">
+  <p>{{ content }}</p>
+</div>
