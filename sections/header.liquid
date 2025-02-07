@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
+
 {% if section.settings.enable_transparent and request.page_type == 'index' %}
   <style>
     html:not(.supports-no-js) body:not(.navigation-open) .site-header--transparent:not(.site-header--fixed) .burger-icon {
@@ -19,7 +21,15 @@
     }
   </style>
 {% endif %}
-<div class="site-header{% if request.page_type == 'index' %} site-header--homepage{% if section.settings.enable_transparent %} site-header--transparent{% endif %}{% endif %}" data-section-id="{{ section.id }}" data-section-type="header-section" data-drawer-push {% if section.settings.enable_transparent and request.page_type == 'index' %} data-transparent-header="true"{% endif %}>
+<div
+  class="site-header{% if request.page_type == 'index' %} site-header--homepage{% if section.settings.enable_transparent %} site-header--transparent{% endif %}{% endif %}"
+  data-section-id="{{ section.id }}"
+  data-section-type="header-section"
+  data-drawer-push
+  {% if section.settings.enable_transparent and request.page_type == 'index' %}
+    data-transparent-header="true"
+  {% endif %}
+>
   <header class="site-header__wrapper" role="banner">
     {% if section.settings.show_announcement %}
       {% if section.settings.home_page_only == false or request.page_type == 'index' %}
@@ -52,29 +62,31 @@
           <a href="{{ section.settings.announcement_link }}" class="announcement-bar announcement-bar--link">
         {% endif %}
 
-          <p class="announcement-bar__message page-width">
-            {% if section.settings.announcement_icon != 'none' %}
-              {%- assign icon = 'icon-' | append: section.settings.announcement_icon -%}
-              {% include icon %}
-            {% endif %}
-            {{ section.settings.announcement_text | escape }}
-          </p>
-          <button class="announcement-bar__close btn btn--clear" aria-expanded="true">{% include 'icon-close' %}</button>
+        <p class="announcement-bar__message page-width">
+          {% if section.settings.announcement_icon != 'none' %}
+            {%- assign icon = 'icon-' | append: section.settings.announcement_icon -%}
+            {% include icon %}
+          {% endif %}
+          {{ section.settings.announcement_text | escape }}
+        </p>
+        <button class="announcement-bar__close btn btn--clear" aria-expanded="true">{% include 'icon-close' %}</button>
 
         {% if section.settings.announcement_link == blank %}
           </div>
         {% else %}
           </a>
         {% endif %}
-
       {% endif %}
     {% endif %}
 
     <div class="site-header-sections page-width">
-      <nav class="site-header__section site-header__section--button"
-        data-site-navigation role="navigation"
+      <nav
+        class="site-header__section site-header__section--button"
+        data-site-navigation
+        role="navigation"
       >
-        <button class="site-header__navigation btn btn--clear btn--square"
+        <button
+          class="site-header__navigation btn btn--clear btn--square"
           aria-expanded="false"
           data-navigation-button
         >
@@ -83,16 +95,26 @@
           <span class="burger-icon burger-icon--bottom"></span>
           <span class="icon__fallback-text">{{ 'general.header.menu' | t }}</span>
         </button>
-        <div class="navigation supports-no-js critical-hide" data-section-id="{{ section.id }}" data-section-type="navigation" aria-hidden=true>
+        <div
+          class="navigation supports-no-js critical-hide"
+          data-section-id="{{ section.id }}"
+          data-section-type="navigation"
+          aria-hidden="true"
+        >
           <div class="navigation__container">
             <ul class="navigation__links">
-              {% for link in linklists[section.settings.primary_navigation].links%}
+              {% for link in linklists[section.settings.primary_navigation].links %}
                 {% assign child_list_handle = link.title | handleize %}
                 {% if link.links != blank %}
                   <li class="navigation__link navigation__has-sublinks navigation__has-sublinks--collapsed navigation__entrance-animation">
-                    <button class="navigation__expand-sublinks" aria-expanded="{% if link.active %}true{% else %}false{% endif %}">
+                    <button
+                      class="navigation__expand-sublinks"
+                      aria-expanded="{% if link.active %}true{% else %}false{% endif %}"
+                    >
                       <span aria-hidden="true">{{ link.title }}</span>
-                      <span class="visually-hidden">{{ 'general.navigation.toggle_sublinks' | t: link_title: link.title }}</span>
+                      <span class="visually-hidden">
+                        {{- 'general.navigation.toggle_sublinks' | t: link_title: link.title -}}
+                      </span>
                       {% include 'icon-arrow-down' %}
                     </button>
                     <div class="navigation__sublinks-container">
@@ -100,22 +122,41 @@
                         {% for childlink in link.links %}
                           <li class="navigation__sublink{% if childlink.links != blank %} navigation__has-sublinks navigation__has-sublinks--collapsed{% endif %}">
                             {% if childlink.links != blank %}
-                              <button class="navigation__expand-sublinks navigation__expand-sublinks--third-level" aria-expanded="{% if link.active %}true{% else %}false{% endif %}">
+                              <button
+                                class="navigation__expand-sublinks navigation__expand-sublinks--third-level"
+                                aria-expanded="{% if link.active %}true{% else %}false{% endif %}"
+                              >
                                 <span aria-hidden="true">{{ childlink.title }}</span>
-                                <span class="visually-hidden">{{ 'general.navigation.toggle_sublinks' | t: link_title: childlink.title }}</span>
+                                <span class="visually-hidden">
+                                  {{- 'general.navigation.toggle_sublinks' | t: link_title: childlink.title -}}
+                                </span>
                                 {% include 'icon-arrow-down' %}
                               </button>
                               <div class="navigation__sublinks-container">
                                 <ul class="navigation__sublinks navigation__sublinks--third-level">
                                   {% for grandchildlink in childlink.links %}
                                     <li class="navigation__sublink--third-level">
-                                      <a href="{{ grandchildlink.url }}"{% if grandchildlink.active %} aria-current="page"{% endif %}>{{ grandchildlink.title | escape }}</a>
+                                      <a
+                                        href="{{ grandchildlink.url }}"
+                                        {% if grandchildlink.active %}
+                                          aria-current="page"
+                                        {% endif %}
+                                      >
+                                        {{- grandchildlink.title | escape -}}
+                                      </a>
                                     </li>
                                   {% endfor %}
                                 </ul>
                               </div>
                             {% else %}
-                              <a href="{{ childlink.url }}"{% if childlink.active %} aria-current="page"{% endif %}>{{ childlink.title | escape }}</a>
+                              <a
+                                href="{{ childlink.url }}"
+                                {% if childlink.active %}
+                                  aria-current="page"
+                                {% endif %}
+                              >
+                                {{- childlink.title | escape -}}
+                              </a>
                             {% endif %}
                           </li>
                         {% endfor %}
@@ -124,7 +165,14 @@
                   </li>
                 {% else %}
                   <li class="navigation__link navigation__entrance-animation{% if link.active %} navigation__link--active{% endif %}">
-                    <a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a>
+                    <a
+                      href="{{ link.url }}"
+                      {% if link.active %}
+                        aria-current="page"
+                      {% endif %}
+                    >
+                      {{- link.title -}}
+                    </a>
                   </li>
                 {% endif %}
               {% endfor %}
@@ -136,7 +184,9 @@
                   <li class="navigation__link navigation__link--secondary navigation__entrance-animation">
                     {% if customer.first_name != blank %}
                       {% capture first_name %}{{ customer.first_name }}{% endcapture %}
-                      <a href="{{ routes.account_url }}">{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}</a>
+                      <a href="{{ routes.account_url }}">
+                        {{- 'layout.customer.logged_in_as_html' | t: first_name: first_name -}}
+                      </a>
                     {% else %}
                       <a href="{{ routes.account_url }}">{{ 'layout.customer.account' | t }}</a>
                     {% endif %}
@@ -172,8 +222,8 @@
       </nav>
       <div class="site-header__section site-header__section--title">
         {% comment %}
-        Use the uploaded logo from theme settings if enabled.
-        Site name gets precedence with `h1` tag on homepage, div on other pages.
+          Use the uploaded logo from theme settings if enabled.
+          Site name gets precedence with `h1` tag on homepage, div on other pages.
         {% endcomment %}
         {% if request.page_type == 'index' %}
           <h1 class="site-header__logo-wrapper h4" itemscope itemtype="http://schema.org/Organization">
@@ -191,7 +241,13 @@
               }
             </style>
 
-            <img class="site-header__logo-image" src="{{ section.settings.logo | img_url: image_size }}" srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}" itemprop="logo">
+            <img
+              class="site-header__logo-image"
+              src="{{ section.settings.logo | img_url: image_size }}"
+              srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+              alt="{{ section.settings.logo.alt | default: shop.name }}"
+              itemprop="logo"
+            >
 
             {% if request.page_type == 'index' and section.settings.enable_transparent %}
               {% if section.settings.transparent_logo == blank %}
@@ -200,8 +256,13 @@
                 {%- assign transparent_logo = section.settings.transparent_logo -%}
               {% endif %}
 
-              <img class="site-header__logo-image site-header__logo-image--transparent" src="{{ transparent_logo | img_url: image_size }}" srcset="{{ transparent_logo | img_url: image_size }} 1x, {{ transparent_logo | img_url: image_size, scale: 2 }} 2x" alt="{{ section.settings.logo.alt | default: shop.name }}"
-                      itemprop="logo">
+              <img
+                class="site-header__logo-image site-header__logo-image--transparent"
+                src="{{ transparent_logo | img_url: image_size }}"
+                srcset="{{ transparent_logo | img_url: image_size }} 1x, {{ transparent_logo | img_url: image_size, scale: 2 }} 2x"
+                alt="{{ section.settings.logo.alt | default: shop.name }}"
+                itemprop="logo"
+              >
             {% endif %}
           {% else %}
             {{ shop.name }}
@@ -214,12 +275,20 @@
           </div>
         {% endif %}
       </div>
+      rixxx
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
       <div class="site-header__section site-header__section--button">
-        <a href="{{ routes.cart_url }}" class="btn btn--clear btn--square btn--hover-scale site-header__cart ajax-cart__toggle" aria-expanded="false">
+        <a
+          href="{{ routes.cart_url }}"
+          class="btn btn--clear btn--square btn--hover-scale site-header__cart ajax-cart__toggle"
+          aria-expanded="false"
+        >
           {%- assign icon = 'icon-header-' | append: section.settings.icon %}
           {% include icon %}
           <span class="icon__fallback-text">{{ 'general.header.view_cart' | t }}</span>
-          <span class="site-header__cart-bubble{% if cart.item_count > 0 %} site-header__cart-bubble--visible{% endif %}"></span>
+          <span
+            class="site-header__cart-bubble{% if cart.item_count > 0 %} site-header__cart-bubble--visible{% endif %}"
+          ></span>
         </a>
       </div>
     </div>
