@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-
 {% if section.settings.enable_transparent and request.page_type == 'index' %}
   <style>
     html:not(.supports-no-js) body:not(.navigation-open) .site-header--transparent:not(.site-header--fixed) .burger-icon {
@@ -275,7 +273,6 @@
           </div>
         {% endif %}
       </div>
-      rixxx
       {% render 'header-search', input_id: 'Search-In-Modal' %}
       <div class="site-header__section site-header__section--button">
         <a
