@@ -1,3 +1,5 @@
+{{ 'component-toggle-button.css' | asset_url | stylesheet_tag }}
+
 {% unless current_variant.available %}
   {% assign button_text = 'products.product.sold_out' | t %}
 {% else %}
@@ -7,6 +9,81 @@
 {% form 'product', product, class: 'product-form' %}
   {% unless product.has_only_default_variant %}
     {% for option in product.options_with_values %}
+      <div style="margin-bottom: .5rem;">
+        <strong data-mce-fragment="1">{{- option.name -}}</strong>
+      </div>
+      <div style="display: flex; flex-direction: row; margin-bottom: 1rem;">
+        {% for value in option.values %}
+          {% assign safeValue = value | replace: '"', '&quot;' %}
+
+          <button
+            class="btn--full toggle-btn"
+            style="padding: 1rem; {% unless forloop.last %}margin-right: 1rem;{% endunless %}"
+            type="button"
+            name="choice_{{safeValue}}"
+            id="btn{{ forloop.index }}"
+            data-variant-id="{{ value.variant.id }}"
+          >
+            <span class="primary-text">
+              {{ safeValue }}
+            </span>
+          </button>
+        {% endfor %}
+      </div>
+
+      <script>
+        // Seleziona tutti i bottoni con la classe .toggle-btn
+        var toggleButtons = document.querySelectorAll('.toggle-btn');
+
+        toggleButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            // Rimuove la classe 'selected' da tutti i bottoni dello stesso gruppo.
+            var parentContainer = this.parentElement;
+            parentContainer.querySelectorAll('.toggle-btn').forEach(function (btn) {
+              btn.classList.remove('selected');
+            });
+
+            // Aggiunge la classe 'selected' al bottone cliccato
+            this.classList.add('selected');
+
+            // Recupera l'id della variante dal data attribute
+            var variantId = this.getAttribute('data-variant-id');
+
+            if (variantId) {
+              var newurl =
+                window.location.protocol +
+                '//' +
+                window.location.host +
+                window.location.pathname +
+                '?variant=' +
+                variantId;
+              window.history.replaceState({ path: newurl }, '', newurl);
+            } else {
+              console.log('No variant id found');
+            }
+          });
+        });
+      </script>
+
+      {% comment %}
+        <script>
+          // Seleziona tutti i bottoni con la classe .toggle-btn
+          var toggleButtons = document.querySelectorAll('.toggle-btn');
+
+          // Aggiunge un event listener ad ogni bottone
+          toggleButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+              // Rimuove la classe 'selected' da tutti i bottoni
+              toggleButtons.forEach(function (btn) {
+                btn.classList.remove('selected');
+              });
+              // Aggiunge la classe 'selected' al bottone cliccato
+              this.classList.add('selected');
+            });
+          });
+        </script>
+      {% endcomment %}
+      {% comment %} RIX OLD {% endcomment %}
       <div class="product-form__item supports-js">
         {% if option.name != 'default' %}
           <label
@@ -36,6 +113,7 @@
           {% endfor %}
         </select>
       </div>
+      {% comment %} RIX OLD {% endcomment %}
     {% endfor %}
   {% endunless %}
 
@@ -82,7 +160,7 @@
   {% endif %}
 
   <button
-    class="btn btn--to-secondary btn--full product__add-to-cart-button{% if section.settings.enable_payment_button and current_variant.available and product.selling_plan_groups == empty %} shopify-payment-btn btn--secondary{% endif %}"
+    class="btn btn--to-secondary btn--full product__add-to-cart-button{% if section.settings.enable_payment_button and current_variant.available and product.selling_plan_groups == empty %} shopify-payment-btn {% endif %}"
     data-cart-submit
     type="submit"
     name="add"
