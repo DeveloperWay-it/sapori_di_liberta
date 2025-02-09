@@ -214,7 +214,7 @@
               </div>
             {% endif %}
 
-            {% include 'search-bar', animate: true, disableTab: true %}
+            {% comment %} {% include 'search-bar', animate: true, disableTab: true %} {% endcomment %}
           </div>
         </div>
       </nav>
@@ -273,7 +273,9 @@
           </div>
         {% endif %}
       </div>
+
       {% render 'header-search', input_id: 'Search-In-Modal' %}
+
       <div class="site-header__section site-header__section--button">
         <a
           href="{{ routes.cart_url }}"
