@@ -1,4 +1,5 @@
 {{ 'component-toggle-button.css' | asset_url | stylesheet_tag }}
+{{ 'component-button.css' | asset_url | stylesheet_tag }}
 
 {% unless current_variant.available %}
   {% assign button_text = 'products.product.sold_out' | t %}
@@ -64,80 +65,8 @@
           });
         });
       </script>
-
-      {% comment %}
-        <script>
-          // Seleziona tutti i bottoni con la classe .toggle-btn
-          var toggleButtons = document.querySelectorAll('.toggle-btn');
-
-          // Aggiunge un event listener ad ogni bottone
-          toggleButtons.forEach(function (button) {
-            button.addEventListener('click', function () {
-              // Rimuove la classe 'selected' da tutti i bottoni
-              toggleButtons.forEach(function (btn) {
-                btn.classList.remove('selected');
-              });
-              // Aggiunge la classe 'selected' al bottone cliccato
-              this.classList.add('selected');
-            });
-          });
-        </script>
-      {% endcomment %}
-      {% comment %} RIX OLD {% endcomment %}
-      <div class="product-form__item supports-js">
-        {% if option.name != 'default' %}
-          <label
-            class="single-option-selector__label{% unless section.settings.show_variant_labels %} single-option-selector__label--hidden{% endunless %}"
-            for="{{ option.name | escape }}"
-          >
-            {{- option.name -}}
-          </label>
-        {% endif %}
-
-        <select
-          id="{{ option.name | escape }}"
-          name="{{ option.name | escape }}"
-          class="single-option-selector"
-          data-option-input
-        >
-          {% for value in option.values %}
-            {% assign safeValue = value | replace: '"', '&quot;' %}
-            <option
-              value="{{ safeValue }}"
-              {% if option.selected_value == value %}
-                selected
-              {% endif %}
-            >
-              {{ value }}
-            </option>
-          {% endfor %}
-        </select>
-      </div>
-      {% comment %} RIX OLD {% endcomment %}
     {% endfor %}
   {% endunless %}
-
-  <select name="id" class="product-form__master-select supports-no-js" data-master-select>
-    {% for variant in product.variants %}
-      {% if variant.available %}
-        {% comment %}
-          Note: if you use option_selection.js, your select tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
-        {% endcomment %}
-        <option
-          {% if variant == product.selected_or_first_available_variant %}
-            selected="selected"
-          {% endif %}
-          data-sku="{{ variant.sku }}"
-          value="{{ variant.id }}"
-        >
-          {{ variant.title }} - {{ variant.price | money_with_currency }}
-        </option>
-
-      {% else %}
-        <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-      {% endif %}
-    {% endfor %}
-  </select>
 
   {% if section.settings.show_quantity_selector %}
     <div class="product-form__item product-form__quantity-selector">
@@ -160,7 +89,7 @@
   {% endif %}
 
   <button
-    class="btn btn--to-secondary btn--full product__add-to-cart-button{% if section.settings.enable_payment_button and current_variant.available and product.selling_plan_groups == empty %} shopify-payment-btn {% endif %}"
+    class="btn btn--hover btn--to-secondary btn--full product__add-to-cart-button{% if section.settings.enable_payment_button and current_variant.available and product.selling_plan_groups == empty %} shopify-payment-btn {% endif %}"
     data-cart-submit
     type="submit"
     name="add"
@@ -181,11 +110,10 @@
 
   {% if section.settings.enable_payment_button and current_variant.available %}
     {{ form | payment_button }}
+    <div style="margin-top: 1rem; position: relative;">
+      {% render 'payment-icons' %}
+    </div>
   {% endif %}
-
-  <div style="margin-top: 1rem; position: relative;">
-    {% render 'payment-icons' %}
-  </div>
 
   {{ form | payment_terms }}
 {% endform %}

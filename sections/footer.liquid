@@ -86,13 +86,6 @@
         <div class="site-footer__payment-icons flex-footer__item--one-third">
           {%- unless shop.enabled_payment_types == empty -%}
             <span class="visually-hidden">{{ 'general.payment.method' | t }}</span>
-            {% comment %} RIXXX <ul class="payment-icons list--inline">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="payment-icon">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
-              {%- endfor -%}
-            </ul> {% endcomment %}
             {% render 'payment-icons' %}
           {%- endunless -%}
         </div>

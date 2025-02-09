@@ -8,6 +8,10 @@
   transition: background-color 0.3s, color 0.3s;
 }
 
+.toggle-btn:hover {
+  filter: brightness(0.95);
+}
+
 .toggle-btn.selected {
   background-color: black;
   color: white;
