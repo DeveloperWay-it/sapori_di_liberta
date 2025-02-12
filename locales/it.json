@@ -61,6 +61,7 @@
       "title": "Cerca nel nostro sito",
       "search_results_title": "Risultati della ricerca",
       "placeholder": "Cerca",
+      "search": "Cerca",
       "submit": "Cerca ancora",
       "results_count_html": {
         "one": "Trovato {{ count }} per <strong>{{ terms }}</strong>",
