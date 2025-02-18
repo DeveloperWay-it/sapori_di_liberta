@@ -204,6 +204,12 @@
           "show_vendor": false,
           "enable_payment_button": true,
           "show_share_buttons": true,
+          "accordion_1_header": "Titolo 1",
+          "accordion_1_text": "Lorem Ipsum",
+          "accordion_2_header": "Titolo 2",
+          "accordion_2_text": "Lorem Ipsum",
+          "accordion_3_header": "Titolo 3",
+          "accordion_3_text": "Lorem Ipsum",
           "enable_video_looping": false,
           "hide_variant_media": true
         }
