@@ -7,10 +7,11 @@
 </ul>
 
 <style>
-  .payment-icons {
+.payment-icons {
   display: flex;
+  flex-wrap: wrap; /* Permette il ritorno a capo */
   justify-content: center; /* Centra gli elementi orizzontalmente */
-  align-items: center; /* Centra gli elementi verticalmente */
+  align-items: center; /* Allinea verticalmente */
   padding: 0;
   list-style: none; /* Rimuove i pallini della lista */
 }
@@ -20,4 +21,8 @@
   align-items: center;
 }
 
+.payment-icon svg {
+  height: 30px; /* Altezza uniforme */
+  width: auto;
+}
 </style>
