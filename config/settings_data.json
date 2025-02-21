@@ -131,8 +131,8 @@
         "settings": {
           "products": "2",
           "rows": "6",
-          "product_tags_enable": false,
-          "product_sorting_enable": false,
+          "product_tags_enable": true,
+          "product_sorting_enable": true,
           "collection_hero_image": false,
           "collection_hero_image_parallax": false,
           "grid_style": "collage",
