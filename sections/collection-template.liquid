@@ -66,7 +66,7 @@
   {%- for filter in collection.filters -%}
     <details  class="facets__disclosure">
       <summary>
-        <div>
+        <div class="facet">
           <span>{{ filter.label }}</span>
 
           {%- if filter.active_values.size > 0 -%}
@@ -77,16 +77,16 @@
       </summary>
 
       <div class="facets__display">
-        <div>
-          <p>{{ filter.active_values.size }} selected</p>
-          {%- if filter.active_values.size > 0 -%}
-            <p><a href="{{ filter.url_to_remove }}">Reset</a></p>
-          {%- endif -%}
-        </div>
         {%- case filter.type -%}
           {%- when 'boolean' -%}
+            <div class="facets_heading"> 
+              <p>{{ filter.active_values.size }} selezionati</p>
+              {%- if filter.active_values.size > 0 -%}
+                <p><a href="{{ filter.url_to_remove }}">Reset</a></p>
+              {%- endif -%}
+            </div>
             <ul>
-                <li>
+                <li class="filter-item">
                   <label for="Filter-{{ filter.param_name }}-{{ filter.true_value.value }}">
                   <input type="checkbox"
                     name="{{ filter.param_name }}"
@@ -96,7 +96,7 @@
                     {% if filter.true_value.count == 0 and filter.true_value.active == false -%}disabled{%- endif -%}
                   >{{ filter.true_value.label }}</label>
                 </li>
-                <li>
+                <li class="filter-item">
                   <label for="Filter-{{ filter.param_name }}-{{ filter.false_value.value }}">
                   <input type="checkbox"
                     name="{{ filter.param_name }}"
@@ -109,12 +109,18 @@
             </ul>
 
             <div>
-              <input type="submit" value="Apply">
+              <input type="submit" value="Applica" class="button">
             </div>
           {%- when 'list' -%}
+            <div class="facets_heading"> 
+              <p>{{ filter.active_values.size }} selezionati</p>
+              {%- if filter.active_values.size > 0 -%}
+                <p><a href="{{ filter.url_to_remove }}">Reset</a></p>
+              {%- endif -%}
+            </div>
             <ul>
               {%- for filter_value in filter.values -%}
-                <li>
+                <li class="filter-item">
                   <label for="Filter-{{ filter.param_name }}-{{ forloop.index }}">
                   <input type="checkbox"
                     name="{{ filter_value.param_name }}"
@@ -167,13 +173,16 @@
             </ul>
 
             <div>
-              <input type="submit" value="Apply">
+              <input type="submit" value="Applica" class="button">
             </div>
           {%- when 'price_range' -%}
+               <div class="facets_heading"> 
+            </div>
             <div class="filter-group-display__price-range">
               <div class="filter-group-display__price-range-from">
-                <span>{{ cart.currency.symbol }}</span>
-
+                <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                <div class="filter_price">
+                  <span>{{ cart.currency.symbol }}</span>
                 <input name="{{ filter.min_value.param_name }}"
                   id="Filter-{{ filter.min_value.param_name }}"
                   {% if filter.min_value.value -%}
@@ -184,13 +193,14 @@
                   min="0"
                   max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
                 >
-
-                <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                </div>
               </div>
               <div class="filter-group-display__price-range-to">
-                <span>{{ cart.currency.symbol }}</span>
-
-                <input name="{{ filter.max_value.param_name }}"
+                
+                <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                <div class="filter_price">
+                  <span>{{ cart.currency.symbol }}</span>
+                  <input name="{{ filter.max_value.param_name }}"
                   id="Filter-{{ filter.max_value.param_name }}"
                   {% if filter.max_value.value -%}
                     value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
@@ -200,13 +210,12 @@
                   min="0"
                   max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
                 >
-
-                <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                </div>
               </div>
             </div>
 
             <div class="filter-group-display__submit">
-              <input type="submit" value="Apply">
+              <input type="submit" value="Applica" class="button" class="button">
             </div>
         {%- endcase -%}
       </div>
