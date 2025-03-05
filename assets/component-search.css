@@ -125,7 +125,7 @@ details[open] .modal-overlay {
 details[open] .modal-overlay::after {
   position: absolute;
   content: "";
-  background-color: rgba(55, 126, 98, 0.5);
+  background-color: rgba(250, 249, 225,0.8);
   top: 100%;
   left: 0;
   right: 0;

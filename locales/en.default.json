@@ -144,7 +144,8 @@
     },
     "filters": {
       "title_tags": "Filter by",
-      "all_tags": "All products"
+      "all_tags": "All products",
+      "clear_all": "Clear all"
     }
   },
   "contact": {

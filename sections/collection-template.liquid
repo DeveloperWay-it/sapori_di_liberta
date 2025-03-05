@@ -61,7 +61,7 @@
   <form class="facets__wrapper">
   <div class="filters__container">
     <div class="facets__heading" tabindex="-1">
-      {{ 'Filters:' }}
+      {{ 'collections.filters.title_tags' | t }}
     </div>
   {%- for filter in collection.filters -%}
     <details  class="facets__disclosure">
@@ -180,7 +180,7 @@
             </div>
             <div class="filter-group-display__price-range">
               <div class="filter-group-display__price-range-from">
-                <label for="Filter-{{ filter.min_value.param_name }}">From</label>
+                <label for="Filter-{{ filter.min_value.param_name }}">Da</label>
                 <div class="filter_price">
                   <span>{{ cart.currency.symbol }}</span>
                 <input name="{{ filter.min_value.param_name }}"
@@ -197,7 +197,7 @@
               </div>
               <div class="filter-group-display__price-range-to">
                 
-                <label for="Filter-{{ filter.max_value.param_name }}">To</label>
+                <label for="Filter-{{ filter.max_value.param_name }}">A</label>
                 <div class="filter_price">
                   <span>{{ cart.currency.symbol }}</span>
                   <input name="{{ filter.max_value.param_name }}"
@@ -224,7 +224,7 @@
   </div>
 
   <div class="active_filters_container">
-    <p><a href="{{ collection.url }}?sort_by={{ collection.sort_by }}">Clear all</a></p>
+    <p><a href="{{ collection.url }}?sort_by={{ collection.sort_by }}">{{ 'collections.filters.clear_all' | t }}</a></p>
 
     {%- for filter in collection.filters -%}
       {%- if filter.type == "price_range" -%}

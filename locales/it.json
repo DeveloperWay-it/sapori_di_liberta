@@ -145,7 +145,8 @@
     },
     "filters": {
       "title_tags": "Filtra per",
-      "all_tags": "Tutti i prodotti"
+      "all_tags": "Tutti i prodotti",
+      "clear_all": "Rimuovi tutti"
     }
   },
   "contact": {
