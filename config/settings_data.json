@@ -64,7 +64,7 @@
           "primary_navigation": "main-menu",
           "secondary_navigation": "footer",
           "show_social_icons": false,
-          "show_announcement": true,
+          "show_announcement": false,
           "home_page_only": true,
           "announcement_text": "Li vogliamo buoni come il pane",
           "announcement_link": "",

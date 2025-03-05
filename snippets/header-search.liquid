@@ -107,17 +107,7 @@
             </div>
           </div>
 
-          <script>
-            document.addEventListener('DOMContentLoaded', function () {
-              var closeButton = document.querySelector('.search__modal__close__button');
-              closeButton.addEventListener('click', function () {
-                var detailsElem = closeButton.closest('details');
-                if (detailsElem) {
-                  detailsElem.removeAttribute('open');
-                }
-              });
-            });
-          </script>
+
 
           {%- if settings.predictive_search_enabled -%}
             <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
