@@ -13,58 +13,31 @@
       <div style="margin-bottom: .5rem;">
         <strong data-mce-fragment="1">{{- option.name -}}</strong>
       </div>
-      <div style="display: flex; flex-direction: row; margin-bottom: 1rem;">
+      <fieldset class="variant-fieldset" data-option-input>
         {% for value in option.values %}
           {% assign safeValue = value | replace: '"', '&quot;' %}
-
-          <button
-            class="btn--full toggle-btn"
-            style="padding: 1rem; {% unless forloop.last %}margin-right: 1rem;{% endunless %}"
-            type="button"
-            name="choice_{{safeValue}}"
-            id="btn{{ forloop.index }}"
-            data-variant-id="{{ value.variant.id }}"
+          <div style="width: 100%; {% unless forloop.last %}margin-right: 1rem;{% endunless %}">
+            <input
+            class="variant-select-input"
+            style="display: none"
+          type="radio"
+          name="{{ option.name | escape}}"
+          id="btn{{ forloop.index }}"
+          data-variant-id="{{ value.variant.id }}"
+          value="{{ value | escape }}"
+          {% if value.selected %}
+            checked
+          {% endif %}
           >
-            <span class="primary-text">
-              {{ safeValue }}
-            </span>
-          </button>
+          <label 
+          class="primary-text btn--full toggle-btn"  for="btn{{ forloop.index }}"
+          >
+            {{ safeValue }}
+          </label>
+            </div>
         {% endfor %}
-      </div>
+      </fieldset>
 
-      <script>
-        // Seleziona tutti i bottoni con la classe .toggle-btn
-        var toggleButtons = document.querySelectorAll('.toggle-btn');
-
-        toggleButtons.forEach(function (button) {
-          button.addEventListener('click', function () {
-            // Rimuove la classe 'selected' da tutti i bottoni dello stesso gruppo.
-            var parentContainer = this.parentElement;
-            parentContainer.querySelectorAll('.toggle-btn').forEach(function (btn) {
-              btn.classList.remove('selected');
-            });
-
-            // Aggiunge la classe 'selected' al bottone cliccato
-            this.classList.add('selected');
-
-            // Recupera l'id della variante dal data attribute
-            var variantId = this.getAttribute('data-variant-id');
-
-            if (variantId) {
-              var newurl =
-                window.location.protocol +
-                '//' +
-                window.location.host +
-                window.location.pathname +
-                '?variant=' +
-                variantId;
-              window.history.replaceState({ path: newurl }, '', newurl);
-            } else {
-              console.log('No variant id found');
-            }
-          });
-        });
-      </script>
     {% endfor %}
   {% endunless %}
 
@@ -72,7 +45,7 @@
     {% for variant in product.variants %}
       {% if variant.available %}
 
-        {% comment %}
+        {% comment %} 
         Note: if you use option_selection.js, your select tag will be overwritten, meaning what you have inside <option> will not reflect what you coded below.
         {% endcomment %}
         <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }} - {{ variant.price | money_with_currency }}</option>
@@ -84,6 +57,8 @@
       {% endif %}
     {% endfor %}
   </select>
+
+  
 
   {% if section.settings.show_quantity_selector %}
     <div class="product-form__item product-form__quantity-selector">
